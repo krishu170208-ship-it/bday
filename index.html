@@ -93,7 +93,6 @@
     position: relative;
     overflow: hidden;
   }
-
 </style>
 </head>
 <body>
@@ -105,13 +104,14 @@
   <audio id="bg-music" autoplay loop>
     <source src="Song.mp3" type="audio/mp3">
   </audio>
-  <button onclick="document.getElementById('bg-music').play()" style="position:fixed;bottom:10px;right:10px;z-index:999;">
+  <button id="music-btn" onclick="document.getElementById('bg-music').play()" 
+          style="position:fixed;bottom:10px;right:10px;z-index:999;">
     ▶ Play Music
   </button>
 
   <!-- Oops Screen with floating hearts -->
   <div id="oops">
-    <h1>Oops, won't open till 12th of January hehe 🫣</h1>
+    <h1>Oops, won't open till 12th January 2026 hehe 🫣</h1>
     <div id="hearts-oops"></div>
   </div>
 
@@ -198,65 +198,68 @@
     <button onclick="goTo('home')">⬅ Back</button>
   </div>
 
-  <script>
-    // Date check for Oops screen
-    const openDate = new Date("January 12, 2026 00:00:00"); 
-    const now = new Date();
-    if (now >= openDate) {
-      document.getElementById('oops').style.display = 'none';
-      document.getElementById('home').classList.add('active');
+<script>
+  // Birthday date: 12th Jan 2026, 00:00 IST
+  const now = new Date();
+  const birthdayDate = new Date("January 12, 2026 00:00:00 GMT+0530"); // IST
+
+  if (now >= birthdayDate) {
+    document.getElementById('oops').style.display = 'none';
+    document.getElementById('home').classList.add('active');
+    document.getElementById('music-btn').style.display = 'block'; // show music button
+  } else {
+    document.getElementById('oops').style.display = 'flex';
+    document.getElementById('music-btn').style.display = 'none'; // hide music button
+    spawnHearts('hearts-oops'); // hearts on Oops screen
+  }
+
+  // Navigation
+  function goTo(section) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(section).classList.add('active');
+  }
+
+  // Messages
+  const messages = [
+    "Well......aaj kuch to hai I guess but kya🤔",
+    "Oh acha yaad aaya aaj to kisi choti si bacchi ka bday hai😁",
+    "Huh😒 kya bolu itna pareshan krti ho kabhi ek bhi baat nhi manti meri jab dekho bas gussa and ladayiii but",
+    "Ab tumhe jhelna meri hi to responsibilty aakhir maine hi to spoil kra itna😉",
+    "So isiliyeee I will continue tolerating youuu and listening to you(Not reallyyy hehe)so ab chalo main topic pe aate hein...",
+    "Apne saare paise mere hawale kardo🔫",
+    "Oh sorry main topic ki jagah future plan bol diya",
+    "Happyyyyyyyyyyy Birthdayyyy meri stupiddddd🎂🎂",
+    "Never changeeeeee you are perfect as you are!!",
+    "Happy stunninggg 17 to my pretty little baby hehe💗you are the bestttt",
+    "Uhm uhm chalo aaj ke liye itna jhoot kaafi tha",
+    "Stayyyy healthy and stop getting sickkk,take careee taaki mujhe tumhe hamesha jhelna padee😁",
+    "Once againnn Happy birthdayyy Angry bird🧅"
+  ];
+  let index = 0;
+  function nextMessage() {
+    if (index < messages.length) {
+      document.getElementById("msg").textContent = messages[index];
+      index++;
     } else {
-      document.getElementById('oops').style.display = 'flex';
-      spawnHearts('hearts-oops'); // spawn hearts on oops screen
+      document.getElementById("msg").textContent = "Agar acha laga ho to party de dena👌";
     }
+  }
 
-    // Navigation
-    function goTo(section) {
-      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-      document.getElementById(section).classList.add('active');
-    }
-
-    // Messages
-    const messages = [
-      "Well......aaj kuch to hai I guess but kya🤔",
-      "Oh acha yaad aaya aaj to kisi choti si bacchi ka bday hai😁",
-      "Huh😒 kya bolu itna pareshan krti ho kabhi ek bhi baat nhi manti meri jab dekho bas gussa and ladayiii but",
-      "Ab tumhe jhelna meri hi to responsibilty aakhir maine hi to spoil kra itna😉",
-      "So isiliyeee I will continue tolerating youuu and listening to you(Not reallyyy hehe)so ab chalo main topic pe aate hein...",
-      "Apne saare paise mere hawale kardo🔫",
-      "Oh sorry main topic ki jagah future plan bol diya",
-      "Happyyyyyyyyyyy Birthdayyyy meri stupiddddd🎂🎂",
-      "Never changeeeeee you are perfect as you are!!",
-      "Happy stunninggg 17 to my pretty little baby hehe💗you are the bestttt",
-      "Uhm uhm chalo aaj ke liye itna jhoot kaafi tha",
-      "Stayyyy healthy and stop getting sickkk,take careee taaki mujhe tumhe hamesha jhelna padee😁",
-      "Once againnn Happy birthdayyy Angry bird🧅"
-    ];
-    let index = 0;
-    function nextMessage() {
-      if (index < messages.length) {
-        document.getElementById("msg").textContent = messages[index];
-        index++;
-      } else {
-        document.getElementById("msg").textContent = "Agar acha laga ho to party de dena👌";
-      }
-    }
-
-    // Floating hearts generator
-    function spawnHearts(containerId='hearts') {
-      const heartsContainer = document.getElementById(containerId);
-      setInterval(() => {
-        const heart = document.createElement('div');
-        heart.classList.add('heart');
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.fontSize = (18 + Math.random() * 15) + "px";
-        heart.innerHTML = "❤";
-        heartsContainer.appendChild(heart);
-        setTimeout(() => heart.remove(), 6000);
-      }, 1200);
-    }
-    spawnHearts(); // main hearts
-  </script>
+  // Floating hearts generator
+  function spawnHearts(containerId='hearts') {
+    const heartsContainer = document.getElementById(containerId);
+    setInterval(() => {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (18 + Math.random() * 15) + "px";
+      heart.innerHTML = "❤";
+      heartsContainer.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }, 1200);
+  }
+  spawnHearts(); // main hearts
+</script>
 
 </body>
 </html>
