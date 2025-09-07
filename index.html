@@ -1,105 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Birthday ❤</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Arial', sans-serif;
-      text-align: center;
-      background: linear-gradient(to right, #ffdee9, #b5fffc);
-      overflow-x: hidden;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday ❤</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    background: linear-gradient(to right, #ffdee9, #b5fffc);
+    overflow-x: hidden;
+  }
 
-    /* Floating hearts */
-    .heart {
-      position: absolute;
-      color: #ff4b2b;
-      font-size: 20px;
-      animation: floatUp 6s linear infinite;
-      opacity: 0.7;
-    }
-    @keyframes floatUp {
-      from { transform: translateY(100vh) scale(1); opacity: 1; }
-      to { transform: translateY(-10vh) scale(1.5); opacity: 0; }
-    }
+  /* Floating hearts */
+  .heart {
+    position: absolute;
+    color: #ff4b2b;
+    font-size: 20px;
+    animation: floatUp 6s linear infinite;
+    opacity: 0.7;
+  }
+  @keyframes floatUp {
+    from { transform: translateY(100vh) scale(1); opacity: 1; }
+    to { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+  }
 
-    .screen {
-      display: none; /* hide by default */
-      padding: 20px;
-      min-height: 100vh;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      animation: fadeIn 0.8s;
-      position: relative;
-      z-index: 1; /* Keep content above hearts */
-    }
-    .active {
-      display: flex; /* only active screen is shown */
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+  .screen {
+    display: none; /* hide by default */
+    padding: 20px;
+    min-height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.8s;
+    position: relative;
+    z-index: 1; /* Keep content above hearts */
+  }
+  .active {
+    display: flex; /* only active screen is shown */
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 
-    h1, h2 {
-      margin-bottom: 20px;
-      color: #333;
-    }
+  h1, h2 {
+    margin-bottom: 20px;
+    color: #333;
+  }
 
-    button {
-      margin: 10px;
-      padding: 12px 25px;
-      font-size: 18px;
-      border: none;
-      border-radius: 12px;
-      background: #ff4b2b;
-      color: white;
-      cursor: pointer;
-      transition: 0.3s;
-      box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
-    }
-    button:hover {
-      background: #ff416c;
-      transform: scale(1.05);
-    }
+  button {
+    margin: 10px;
+    padding: 12px 25px;
+    font-size: 18px;
+    border: none;
+    border-radius: 12px;
+    background: #ff4b2b;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+  }
+  button:hover {
+    background: #ff416c;
+    transform: scale(1.05);
+  }
 
-    .gallery img, .gallery video {
-      max-width: 200px;
-      margin: 10px;
-      border-radius: 12px;
-      box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
-    }
+  .gallery img, .gallery video {
+    max-width: 200px;
+    margin: 10px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+  }
 
-    audio {
-      margin: 10px;
-    }
-  </style>
+  audio {
+    margin: 10px;
+  }
+
+  /* Oops Screen */
+  #oops {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+    font-size: 28px;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+</style>
 </head>
 <body>
 
-  <!-- Floating hearts container -->
+  <!-- Floating hearts container for main screens -->
   <div id="hearts"></div>
 
   <!-- 🎶 Background Music -->
   <audio id="bg-music" autoplay loop>
     <source src="Song.mp3" type="audio/mp3">
-    
   </audio>
   <button onclick="document.getElementById('bg-music').play()" style="position:fixed;bottom:10px;right:10px;z-index:999;">
     ▶ Play Music
   </button>
 
+  <!-- Oops Screen with floating hearts -->
+  <div id="oops">
+    <h1>Oops, won't open till 12th of January hehe 🫣</h1>
+    <div id="hearts-oops"></div>
+  </div>
+
   <!-- Home Screen -->
-  <div id="home" class="screen active">
+  <div id="home" class="screen">
     <h1>🎂 Happy Birthday Stupid ❤</h1>
     <h2>Choose a surprise 🎁</h2>
     <button onclick="goTo('memories')">📸 Our Memories</button>
     <button onclick="goTo('pretty')">💃 My Pretty Lady</button>
-    <button onclick="goTo('videos')">🎥 Her Videos</button> <!-- ✅ NEW BUTTON -->
+    <button onclick="goTo('videos')">🎥 Her Videos</button>
     <button onclick="goTo('messages')">💌 Birthday Messages</button>
   </div>
 
@@ -107,22 +129,19 @@
   <div id="memories" class="screen">
     <h2>📸 Our Memories</h2>
     <div class="gallery">
-      
-      
-      
+      <img src="Memory1.jpg" alt="Memory 1">
+      <img src="Memory2.jpg" alt="Memory 2">
+      <img src="Memory3.jpg" alt="Memory 3">
       <img src="Us1.jpg" alt="Memory 4">
       <img src="Us2.jpg" alt="Memory 5">
-       <img src="Memory2.jpg" alt="Memory 2">
       <img src="Us3.jpg" alt="Memory 6">
       <img src="Us4.jpg" alt="Memory 7">
       <img src="Us5.jpg" alt="Memory 8">
-       <img src="Memory1.jpg" alt="Memory 1">
       <img src="Us6.jpg" alt="Memory 9">
-       
+      <img src="Us7.jpg" alt="Memory 10">
       <img src="Us8.jpg" alt="Memory 11">
       <img src="Us9.jpg" alt="Memory 12">
-       <img src="Memory3.jpg" alt="Memory 3">
-      
+      <img src="Us10.jpg" alt="Memory 13">
     </div>
     <button onclick="goTo('home')">⬅ Back</button>
   </div>
@@ -151,12 +170,11 @@
       <img src="her18.jpg" alt="Her 18">
       <img src="her19.jpg" alt="Her 19">
       <img src="her20.jpg" alt="Her 20">
-      
     </div>
     <button onclick="goTo('home')">⬅ Back</button>
   </div>
 
-  <!-- 🎥 Her Videos Section (NEW) -->
+  <!-- 🎥 Her Videos Section -->
   <div id="videos" class="screen">
     <h2>🎥 Her Videos</h2>
     <div class="gallery">
@@ -181,6 +199,17 @@
   </div>
 
   <script>
+    // Date check for Oops screen
+    const openDate = new Date("January 12, 2026 00:00:00"); 
+    const now = new Date();
+    if (now >= openDate) {
+      document.getElementById('oops').style.display = 'none';
+      document.getElementById('home').classList.add('active');
+    } else {
+      document.getElementById('oops').style.display = 'flex';
+      spawnHearts('hearts-oops'); // spawn hearts on oops screen
+    }
+
     // Navigation
     function goTo(section) {
       document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
@@ -214,8 +243,8 @@
     }
 
     // Floating hearts generator
-    function spawnHearts() {
-      const heartsContainer = document.getElementById('hearts');
+    function spawnHearts(containerId='hearts') {
+      const heartsContainer = document.getElementById(containerId);
       setInterval(() => {
         const heart = document.createElement('div');
         heart.classList.add('heart');
@@ -226,11 +255,8 @@
         setTimeout(() => heart.remove(), 6000);
       }, 1200);
     }
-    spawnHearts();
+    spawnHearts(); // main hearts
   </script>
+
 </body>
 </html>
-
-
-
-
