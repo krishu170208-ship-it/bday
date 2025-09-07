@@ -138,10 +138,8 @@
       <img src="Us4.jpg" alt="Memory 7">
       <img src="Us5.jpg" alt="Memory 8">
       <img src="Us6.jpg" alt="Memory 9">
-      
       <img src="Us8.jpg" alt="Memory 11">
       <img src="Us9.jpg" alt="Memory 12">
-      
     </div>
     <button onclick="goTo('home')">⬅ Back</button>
   </div>
@@ -206,10 +204,10 @@
   if (now >= birthdayDate) {
     document.getElementById('oops').style.display = 'none';
     document.getElementById('home').classList.add('active');
-    document.getElementById('music-btn').style.display = 'block'; // show music button
+    document.getElementById('music-btn').style.display = 'block';
   } else {
     document.getElementById('oops').style.display = 'flex';
-    document.getElementById('music-btn').style.display = 'none'; // hide music button
+    document.getElementById('music-btn').style.display = 'none';
     spawnHearts('hearts-oops'); // hearts on Oops screen
   }
 
@@ -263,4 +261,3 @@
 
 </body>
 </html>
-
