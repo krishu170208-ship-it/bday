@@ -27,7 +27,7 @@
     }
 
     .screen {
-      display: none;
+      display: none; /* hide by default */
       padding: 20px;
       min-height: 100vh;
       flex-direction: column;
@@ -35,10 +35,10 @@
       justify-content: center;
       animation: fadeIn 0.8s;
       position: relative;
-      z-index: 1;
+      z-index: 1; /* Keep content above hearts */
     }
     .active {
-      display: flex;
+      display: flex; /* only active screen is shown */
     }
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
@@ -77,25 +77,6 @@
     audio {
       margin: 10px;
     }
-
-    /* Countdown screen */
-    #timerScreen {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background: linear-gradient(to right, #ffb3ba, #ffdfba);
-      font-size: 2em;
-      color: white;
-      font-weight: bold;
-      text-shadow: 2px 2px 8px #ff416c;
-      position: relative;
-    }
-    #countdown {
-      font-size: 2.5em;
-      margin-top: 20px;
-    }
   </style>
 </head>
 <body>
@@ -103,30 +84,22 @@
   <!-- Floating hearts container -->
   <div id="hearts"></div>
 
-  <!-- Play Music Button -->
-  <button id="play-music-btn" onclick="document.getElementById('bg-music').play()" 
-          style="position:fixed;bottom:10px;right:10px;z-index:999; display:none;">
-    ▶ Play Music
-  </button>
-
   <!-- 🎶 Background Music -->
   <audio id="bg-music" autoplay loop>
     <source src="Song.mp3" type="audio/mp3">
+    
   </audio>
-
-  <!-- Countdown Screen -->
-  <div id="timerScreen">
-    <h1>🎉 Your Special Day is Coming Soon! 🎉</h1>
-    <div id="countdown">Loading...</div>
-  </div>
+  <button onclick="document.getElementById('bg-music').play()" style="position:fixed;bottom:10px;right:10px;z-index:999;">
+    ▶ Play Music
+  </button>
 
   <!-- Home Screen -->
-  <div id="home" class="screen">
+  <div id="home" class="screen active">
     <h1>🎂 Happy Birthday Stupid ❤</h1>
     <h2>Choose a surprise 🎁</h2>
     <button onclick="goTo('memories')">📸 Our Memories</button>
     <button onclick="goTo('pretty')">💃 My Pretty Lady</button>
-    <button onclick="goTo('videos')">🎥 Her Videos</button>
+    <button onclick="goTo('videos')">🎥 Her Videos</button> <!-- ✅ NEW BUTTON -->
     <button onclick="goTo('messages')">💌 Birthday Messages</button>
   </div>
 
@@ -175,7 +148,7 @@
     <button onclick="goTo('home')">⬅ Back</button>
   </div>
 
-  <!-- Videos Section -->
+  <!-- 🎥 Her Videos Section (NEW) -->
   <div id="videos" class="screen">
     <h2>🎥 Her Videos</h2>
     <div class="gallery">
@@ -245,41 +218,7 @@
         setTimeout(() => heart.remove(), 6000);
       }, 1200);
     }
-
-    // Countdown logic
-    function startCountdown() {
-      const countdownEl = document.getElementById('countdown');
-      const timerScreen = document.getElementById('timerScreen');
-      const homeScreen = document.getElementById('home');
-      const musicBtn = document.getElementById('play-music-btn');
-
-      // Target date in IST: 12 Jan 2025 00:00:00 IST
-      const targetIST = new Date(Date.UTC(2025,0,11,18,30,0)); // 00:00 IST = 18:30 UTC
-
-      const interval = setInterval(() => {
-        const nowUTC = new Date();
-        let distance = targetIST.getTime() - nowUTC.getTime();
-
-        if (distance <= 0) {
-          clearInterval(interval);
-          timerScreen.style.display = 'none';
-          homeScreen.classList.add('active');
-          musicBtn.style.display = 'block';
-          spawnHearts();
-          return;
-        }
-
-        const days = Math.floor(distance / (1000*60*60*24));
-        const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
-        const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
-        const seconds = Math.floor((distance % (1000*60)) / 1000);
-
-        countdownEl.textContent = ${days}d ${hours}h ${minutes}m ${seconds}s;
-      }, 1000);
-    }
-
-    startCountdown();
+    spawnHearts();
   </script>
 </body>
 </html>
-
