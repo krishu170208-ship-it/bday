@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday ❤</title>
+<style>
+body {margin:0;font-family:'Arial',sans-serif;overflow-x:hidden;background:linear-gradient(to right,#ffe6f0,#fff5e6);}
+h1,h2 {margin:0 0 20px 0;color:#333;text-shadow:1px 1px 2px #fff;}
+button {margin:10px;padding:12px 25px;font-size:18px;border:none;border-radius:12px;
+  background:linear-gradient(to right,#ff7eb9,#ff758c);color:white;cursor:pointer;transition:0.3s;box-shadow:0px 4px 10px rgba(0,0,0,0.2);}
+button:hover {background:linear-gradient(to right,#ff758c,#ff7eb9);transform:scale(1.08);box-shadow:0 0 20px rgba(255,100,150,0.7);}
+.screen {display:none;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:20px;position:relative;}
+.active {display:flex;}
+#intro-screen {font-size:32px;text-align:center;color:#fff;background:linear-gradient(to right,#fbc2eb,#a6c1ee);
+  width:100%;height:100%;justify-content:center;align-items:center;flex-direction:column;}
+#slideshow-container {width:90%;max-width:800px;height:450px;margin:30px auto;perspective:1500px;
+  position:relative;display:flex;align-items:center;justify-content:center;}
+.book-page {width:100%;height:100%;position:absolute;transform-style:preserve-3d;transition: transform 1s ease, opacity 1s ease;
+  display:flex;align-items:center;justify-content:space-between;box-shadow:0 8px 25px rgba(0,0,0,0.4);border-radius:15px;background:#fffbe6;padding:15px;}
+.page-left,.page-right {width:48%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.page-left img,.page-right img {width:95%;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.3);}
+.caption {margin-top:15px;font-family:'Segoe Script',cursive;font-size:22px;color:#ff4b8b;text-align:center;text-shadow:1px 1px 2px #fff;}
+.hidden {opacity:0;transform: rotateY(180deg);}
+.visible {opacity:1;transform: rotateY(0deg);}
+.gallery img,.gallery video {max-width:200px;margin:10px;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.2);}
+#home,#memories,#pretty,#videos,#messages {flex-direction:column;align-items:center;justify-content:flex-start;padding-top:50px;border-radius:15px;box-shadow:0 0 30px rgba(255,150,200,0.3);}
+#home {background:linear-gradient(to right,#fff0f5,#ffe6f0);}
+#memories {background:linear-gradient(to right,#ffe4e1,#fff0f0);}
+#pretty {background:linear-gradient(to right,#ffe4f0,#fff0f5);}
+#videos {background:linear-gradient(to right,#f0e6ff,#e6e0ff);}
+#messages {background:linear-gradient(to right,#e6fff2,#d0fff0);}
+#hearts,#hearts-intro,#petals {position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:hidden;z-index:0;}
+#music-btn {display:none;position:fixed;bottom:10px;right:10px;z-index:999;}
+</style>
+</head>
+<body>
+
+<div id="hearts"></div>
+<div id="petals"></div>
+
+<audio id="bg-music" loop><source src="Song.mp3" type="audio/mp3"></audio>
+<button id="music-btn" onclick="toggleMusic()">▶ Play Music</button>
+
+<!-- Intro / Oops -->
+<div id="intro-screen" class="screen active">
+  <h1>Oops, won’t open till 12th Jan 2026 hehe 🫣</h1>
+  <div id="hearts-intro"></div>
+</div>
+
+<!-- Slideshow -->
+<div id="slideshow-container" class="screen">
+  <div class="book-page visible">
+    <div class="page-left"><img src="her35.jpg"><div class="caption">My Sweet Smile</div></div>
+    <div class="page-right"><img src="her36.jpg"><div class="caption">Looking Gorgeous</div></div>
+  </div>
+  <div class="book-page hidden">
+    <div class="page-left"><img src="her23.jpg"><div class="caption">Cutie Pie</div></div>
+    <div class="page-right"><img src="her24.jpg"><div class="caption">Adorable Moment</div></div>
+  </div>
+  <div class="book-page hidden">
+    <div class="page-left"><img src="her25.jpg"><div class="caption">My Sunshine</div></div>
+    <div class="page-right"><img src="her26.jpg"><div class="caption">Lovely Smile</div></div>
+  </div>
+  <div class="book-page hidden">
+    <div class="page-left"><img src="her27.jpg"><div class="caption">Beautiful Eyes</div></div>
+    <div class="page-right"><img src="her28.jpg"><div class="caption">Sweet Laughter</div></div>
+  </div>
+  <div class="book-page hidden">
+    <div class="page-left"><img src="her29.jpg"><div class="caption">Cute Pose</div></div>
+    <div class="page-right"><img src="her30.jpg"><div class="caption">Lovely Outfit</div></div>
+  </div>
+  <div class="book-page hidden">
+    <div class="page-left"><img src="her31.jpg"><div class="caption">Precious Moment</div></div>
+    <div class="page-right"><img src="her32.jpg"><div class="caption">Beautiful Smile</div></div>
+  </div>
+  <div class="book-page hidden">
+    <div class="page-left"><img src="her33.jpg"><div class="caption">My Happiness</div></div>
+    <div class="page-right"><img src="her34.jpg"><div class="caption">Forever Cute</div></div>
+  </div>
+  <div class="book-page hidden">
+    <div class="page-left"><img src="her21.jpg"><div class="caption">Forever Mine</div></div>
+    <div class="page-right"></div>
+  </div>
+</div>
+
+<!-- Home Menu -->
+<div id="home" class="screen">
+  <h1>🎂 Happy Birthday Stupid ❤</h1>
+  <h2>Choose a surprise 🎁</h2>
+  <button onclick="goTo('memories')">📸 Our Memories</button>
+  <button onclick="goTo('pretty')">💃 My Pretty Lady</button>
+  <button onclick="goTo('videos')">🎥 Her Videos</button>
+  <button onclick="goTo('messages')">💌 Birthday Messages</button>
+</div>
+
+<!-- Memories -->
+<div id="memories" class="screen">
+  <h2>📸 Our Memories</h2>
+  <div class="gallery">
+    <img src="Memory1.jpg"><img src="Memory2.jpg"><img src="Memory3.jpg">
+    <img src="Us1.jpg"><img src="Us2.jpg"><img src="Us3.jpg"><img src="Us4.jpg"><img src="Us5.jpg"><img src="Us6.jpg">
+    <img src="Us7.jpg"><img src="Us8.jpg"><img src="Us9.jpg">
+  </div>
+  <button onclick="goTo('home')">⬅ Back</button>
+</div>
+
+<!-- Pretty -->
+<div id="pretty" class="screen">
+  <h2>💃 My Pretty Lady</h2>
+  <div class="gallery">
+    <img src="her1.jpg"><img src="her2.jpg"><img src="her3.jpg"><img src="her4.jpg"><img src="her5.jpg">
+    <img src="her6.jpg"><img src="her7.jpg"><img src="her8.jpg"><img src="her9.jpg"><img src="her10.jpg">
+    <img src="her11.jpg"><img src="her12.jpg"><img src="her13.jpg"><img src="her14.jpg"><img src="her15.jpg">
+    <img src="her16.jpg"><img src="her17.jpg"><img src="her18.jpg"><img src="her19.jpg"><img src="her20.jpg">
+    <img src="her21.jpg"><img src="her22.jpg"><img src="her23.jpg"><img src="her24.jpg"><img src="her25.jpg">
+    <img src="her26.jpg"><img src="her27.jpg"><img src="her28.jpg"><img src="her29.jpg"><img src="her30.jpg">
+    <img src="her31.jpg"><img src="her32.jpg"><img src="her33.jpg"><img src="her34.jpg"><img src="her35.jpg">
+  </div>
+  <button onclick="goTo('home')">⬅ Back</button>
+</div>
+
+<!-- Videos -->
+<div id="videos" class="screen">
+  <h2>🎥 Her Videos</h2>
+  <div class="gallery">
+    <video controls width="250"><source src="Video1.mp4"></video>
+    <video controls width="250"><source src="Video2.mp4"></video>
+    <video controls width="250"><source src="Video3.mp4"></video>
+    <video controls width="250"><source src="Video4.mp4"></video>
+    <video controls width="250"><source src="Video5.mp4"></video>
+    <video controls width="250"><source src="Video6.mp4"></video>
+    <video controls width="250"><source src="Video7.mp4"></video>
+    <video controls width="250"><source src="Video8.mp4"></video>
+    <video controls width="250"><source src="Video9.mp4"></video>
+  </div>
+  <button onclick="goTo('home')">⬅ Back</button>
+</div>
+
+<!-- Messages -->
+<div id="messages" class="screen">
+  <h2 id="msg">Happy Birthday Your Highness ❤</h2>
+  <button onclick="nextMessage()">Click for Message 💌</button>
+  <button onclick="goTo('home')">⬅ Back</button>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded",function(){
+  // ✅ Timer with original working logic for fixed 12 Jan 2026
+  const TIMER_KEY="birthday_timer_end";
+  let endTime=parseInt(localStorage.getItem(TIMER_KEY));
+  const now=Date.now();
+  const fixedDate=new Date('2026-01-12T00:00:00').getTime();
+  if(!endTime || now>endTime){
+    endTime=fixedDate;
+    localStorage.setItem(TIMER_KEY,endTime);
+  }
+  function checkTimer(){
+    const now=Date.now();
+    if(now>=endTime){
+      document.getElementById('intro-screen').classList.remove('active');
+      startSlideshow();
+      localStorage.removeItem(TIMER_KEY);
+      document.getElementById('music-btn').style.display='block';
+    }else{
+      setTimeout(checkTimer,500);
+    }
+  }
+  checkTimer();
+
+  // Floating Hearts/Petals
+  function spawnFloating(containerId,symbol,interval=800,sizeRange=[15,30]){
+    const container=document.getElementById(containerId);
+    setInterval(()=>{
+      const e=document.createElement('div');
+      e.style.position='absolute';
+      e.style.left=Math.random()*100+'vw';
+      e.style.fontSize=(sizeRange[0]+Math.random()*(sizeRange[1]-sizeRange[0]))+'px';
+      e.style.animation="floatUp 6s linear infinite";
+      e.innerHTML=symbol;
+      container.appendChild(e);
+      setTimeout(()=>e.remove(),6000);
+    },interval);
+  }
+  spawnFloating('hearts','❤');spawnFloating('petals','🌸',1200,[20,35]);spawnFloating('hearts-intro','❤',1000,[20,40]);
+
+  // Music toggle
+  window.toggleMusic=function(){
+    const m=document.getElementById('bg-music');
+    m.paused?m.play():m.pause();
+  }
+
+  // Navigation
+  window.goTo=function(id){
+    document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+
+  // Messages
+  const msgs=["Well... kuch to hai I guess but kya 🤔","Oh yaad aaya, aaj ek choti si bacchi ka bday hai 😁"];
+  let msgI=0;
+  window.nextMessage=function(){
+    document.getElementById("msg").textContent= msgI<msgs.length ? msgs[msgI++] : "Agar acha laga ho to party de dena 👌";
+  }
+
+  // Slideshow
+  const slides=document.querySelectorAll('.book-page');
+  let idx=0;
+  function startSlideshow(){
+    const show=document.getElementById('slideshow-container');
+    show.classList.add('active');
+    slides.forEach(s=>{s.classList.remove('visible');s.classList.add('hidden');});
+    idx=0;
+    slides[idx].classList.remove('hidden');slides[idx].classList.add('visible');
+    let interval=setInterval(()=>{
+      slides[idx].classList.remove('visible');slides[idx].classList.add('hidden');
+      idx++;
+      if(idx>=slides.length){
+        clearInterval(interval);
+        show.classList.remove('active');
+        goTo('home');
+        return;
+      }
+      slides[idx].classList.remove('hidden');slides[idx].classList.add('visible');
+    },3000);
+  }
+});
+</script>
+
+<style>
+@keyframes floatUp{from{transform:translateY(100vh) rotate(0deg);opacity:1;}to{transform:translateY(-10vh) rotate(360deg);opacity:0;}}
+</style>
+</body>
+</html>
